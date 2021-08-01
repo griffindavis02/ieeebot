@@ -4,9 +4,6 @@ import sys
 import json
 from dotenv import load_dotenv
 from email.message import EmailMessage
-# from email.MIMEMultipart import MIMEMultipart
-# from email.MIMEBase import MIMEBase
-# from email.MIMEText import MIMEText
 
 load_dotenv()
 with open('./accounts.json', 'rb') as f:
