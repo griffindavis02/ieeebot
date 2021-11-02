@@ -153,15 +153,17 @@ const InstBot = async(options, browser) => {
         let sleepTime = Math.ceil((24 * 60 * 60 * 1000) / options.dailyFollowLimit)
 
         for(account of accounts) {
+            //TODO: Determine buttons based on having content "Follow"
+            // or a span with class for following icon
             console.log('Navigating to user ' + account)
             await page.goto(`${igBaseUrl}${account}`)
-            const followButton = '#react-root > section > main > div > header > section > div.nZSzR > div.Igw0E.IwRSH.eGOV_.ybXk5._4EzTm > div > div > button'
+            const followButton = '#react-root > section > main > div > header > section > div.nZSzR > div.qF0y9.Igw0E.IwRSH.eGOV_.ybXk5._4EzTm.bPdm3 > div > div > button'
             await page.waitForSelector(followButton)
             console.log(`Following ${account}`)
             if (!options.dryRun) {
                 await page.click(followButton)
                 await page.waitForTimeout(1000)
-                const [unfollowButton] = await page.$('#react-root > section > main > div > header > section > div.nZSzR > div.Igw0E.IwRSH.eGOV_.ybXk5._4EzTm > div > div:nth-child(2) > div > span > span.vBF20._1OSdk > button')
+                const [unfollowButton] = await page.waitForSelector('#react-root > section > main > div > header > section > div.qF0y9.Igw0E.IwRSH.eGOV_._4EzTm > div > div.qF0y9.Igw0E.IwRSH.eGOV_._4EzTm.soMvl > button')
                 if (unfollowButton != null) {
                     console.log('User followed')
                 }
