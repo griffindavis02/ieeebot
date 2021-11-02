@@ -55,11 +55,13 @@ const InstBot = async(options, browser) => {
             await page.waitForSelector('body > div.RnEpo.Yx5HN > div > div > div > div.mt3GC > button.aOOlW.HoLwm', {
                 visible: true,
                 timeout: 10000,
-            }).catch(e => console.error("No notification alert. Likely detected strange activity"))
+            })
             .then((async() => {
                 console.log('Notification alert. Choosing not to turn on...')
                 await page.click('body > div.RnEpo.Yx5HN > div > div > div > div.mt3GC > button.aOOlW.HoLwm')
             }))
+            .catch(e => console.error("No notification alert. Likely detected strange activity"))
+
             let accounts = []
 
             for (account of options.usersToFollowFollowersOf) {

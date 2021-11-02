@@ -1,7 +1,7 @@
 require('dotenv').config()
 const puppeteer = require('puppeteer')
 const InstaBot = require('./InstaBot')
-// const fetch = require('node-fetch')
+const fs = require('fs')
 const spawn = require('child_process').spawn
 
 const options = {
@@ -27,6 +27,15 @@ async function startBot() {
         await browser.close()
     } catch (e) {
         console.log(e)
+        const [page] = await browser.pages()
+
+        const html = await page.evaluate(() => document.querySelector('*').outerHTML)
+        fs.writeFileSync('lastHTML.html', html)
+
+        await page.screenshot({
+            path: './errorSnap.png',
+            fullPage: true
+        })
         await browser.close()
     }
     finally {
