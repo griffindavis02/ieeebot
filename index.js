@@ -18,6 +18,12 @@ const options = {
 
 async function startBot() {
     try {
+        // ARM Implementation
+        // let browser = await puppeteer.launch({
+        //     headless: true,
+        //     executablePath: '/usr/bin/chromium-browser',
+        //     args: ['--no-sandbox', '--disable-setuid-sandbox']
+        // })
         let browser = await puppeteer.launch({ headless: false })
 
         const bot = await InstaBot.InstBot(options, browser)
