@@ -13,7 +13,7 @@ const options = {
     usersToFollowFollowersOf: ['villanovaengineering'],
 
     skipPrivate: false,
-    dryRun: true
+    dryRun: false
 }
 
 async function startBot() {
